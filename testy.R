@@ -17,14 +17,18 @@ library(devtools)
 install_github("netskink/CSJFD")
 library(CSJFD)
 # test the built-in 
-hello()
-#myTest()
+#myTest1()
 #remove.packages("CSJFD")
 # these should fail
-#hello()
-#myTest()
+#myTest1()
 
 URL1="http://httpbin.org/get"
 URL2="http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test"
 r1 = getData(URL1)
 r2 = getData(URL2)
+print(r1$status_code)
+# we added a custom header,make sure its there
+# note url2 does not return a custom header
+typeof(content(r1)$headers['Customheader'])
+print(content(r1)$headers$Customheader)
+typeof(content(r1)$headers$Customheader)
